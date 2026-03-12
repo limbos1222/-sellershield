@@ -1,0 +1,135 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    background-color: #0a0a0f;
+    color: #e8e8f0;
+    font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #111118;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #1e1e2e;
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #2a2a3e;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-surface border border-border rounded-lg p-4;
+  }
+
+  .btn-primary {
+    @apply bg-accent hover:bg-accent-dim text-white px-4 py-2 rounded font-mono text-xs font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-ghost {
+    @apply text-text-dim hover:text-text hover:bg-border px-3 py-1.5 rounded text-xs transition-colors;
+  }
+
+  .btn-danger {
+    @apply bg-red-900/30 hover:bg-red-900/50 text-red-400 border border-red-900/50 px-3 py-1.5 rounded text-xs transition-colors;
+  }
+
+  .btn-success {
+    @apply bg-green-900/30 hover:bg-green-900/50 text-green-400 border border-green-900/50 px-3 py-1.5 rounded text-xs transition-colors;
+  }
+
+  .input {
+    @apply bg-bg border border-border rounded px-3 py-2 text-text placeholder-text-dim focus:outline-none focus:border-accent text-xs w-full font-mono;
+  }
+
+  .label {
+    @apply text-text-dim text-xs uppercase tracking-wider mb-1 block;
+  }
+
+  .badge {
+    @apply inline-flex items-center px-2 py-0.5 rounded text-xs font-mono;
+  }
+
+  .badge-active { @apply badge bg-green-900/30 text-green-400 border border-green-900/50; }
+  .badge-paused { @apply badge bg-yellow-900/30 text-yellow-400 border border-yellow-900/50; }
+  .badge-demo { @apply badge bg-orange-900/30 text-accent border border-accent/30; }
+  .badge-pending { @apply badge bg-blue-900/30 text-blue-400 border border-blue-900/50; }
+  .badge-posted { @apply badge bg-green-900/30 text-green-400 border border-green-900/50; }
+  .badge-rejected { @apply badge bg-red-900/30 text-red-400 border border-red-900/50; }
+
+  .score-pill {
+    @apply inline-flex items-center justify-center w-8 h-6 rounded text-xs font-bold font-mono;
+  }
+
+  .score-high { @apply score-pill bg-green-900/50 text-green-400; }
+  .score-med { @apply score-pill bg-yellow-900/50 text-yellow-400; }
+  .score-low { @apply score-pill bg-red-900/30 text-red-400; }
+
+  .stat-card {
+    @apply card flex flex-col gap-1;
+  }
+
+  .stat-value {
+    @apply text-3xl font-serif text-text tabular-nums;
+  }
+
+  .stat-label {
+    @apply text-xs text-text-dim uppercase tracking-wider;
+  }
+
+  .table-row {
+    @apply border-b border-border hover:bg-surface/80 transition-colors;
+  }
+
+  .table-cell {
+    @apply px-4 py-3 text-xs;
+  }
+
+  .table-header {
+    @apply px-4 py-2 text-text-dim text-xs uppercase tracking-wider text-left border-b border-border;
+  }
+}
+
+/* Scanning animation for agent running state */
+@keyframes scanLine {
+  0% { top: 0; }
+  100% { top: 100%; }
+}
+
+.agent-scan::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(transparent, #ff5500, transparent);
+  animation: scanLine 2s linear infinite;
+}
+
+/* Number counter animation */
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-count-up {
+  animation: countUp 0.5s ease-out forwards;
+}
